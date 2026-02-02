@@ -36,6 +36,8 @@
         .plyr {
             --plyr-color-main: #3b82f6; /* Change this hex code to match your brand color */
             --plyr-video-background: #000000;
+            --plyr-menu-background: #1a1a1a;
+            --plyr-menu-color: #ffffff;
         }
 
         /* CRITICAL HACK to hide "More Videos" and YouTube branding:
@@ -55,7 +57,7 @@
         <!-- 
            The Video Element 
            1. data-plyr-provider="youtube": Tells Plyr this is YouTube
-           2. data-plyr-embed-id: Your new ID is here
+           2. data-plyr-embed-id: Your ID 'yLvj0KEDsDc'
         -->
         <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="yLvj0KEDsDc"></div>
     </div>
@@ -74,8 +76,18 @@
                     'current-time', // Time elapsed
                     'mute',       // Mute button
                     'volume',     // Volume slider
+                    'settings',   // <--- Added Settings Menu (Gear Icon)
                     'fullscreen'  // Fullscreen button
                 ],
+
+                // Settings Configuration
+                settings: ['speed'], // Only show speed in the settings menu
+                
+                // Speed Options
+                speed: { 
+                    selected: 1, 
+                    options: [0.5, 0.75, 1, 1.25, 1.5, 2] 
+                },
                 
                 // Specific YouTube Config to hide branding
                 youtube: {
