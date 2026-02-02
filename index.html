@@ -37,6 +37,16 @@
             --plyr-color-main: #3b82f6; /* Change this hex code to match your brand color */
             --plyr-video-background: #000000;
         }
+
+        /* CRITICAL HACK to hide "More Videos" and YouTube branding:
+           We scale the iframe to be taller than the container. 
+           This pushes the top title bar and the bottom "suggested videos" 
+           overlay out of the visible "window" of the player.
+        */
+        .plyr__video-embed iframe {
+            top: -50%;
+            height: 200%;
+        }
     </style>
 </head>
 <body>
@@ -45,7 +55,7 @@
         <!-- 
            The Video Element 
            1. data-plyr-provider="youtube": Tells Plyr this is YouTube
-           2. data-plyr-embed-id: REPLACE THIS ID with your video ID 
+           2. data-plyr-embed-id: Your new ID is here
         -->
         <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="yLvj0KEDsDc"></div>
     </div>
