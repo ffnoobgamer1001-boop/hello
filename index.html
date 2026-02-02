@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean YouTube Embed</title>
+    
+    <!-- Plyr CSS: This gives the player the premium "self-hosted" look -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    
+    <style>
+        /* Basic Page Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #111111; /* Dark background for focus */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* The Container for the Video */
+        .player-wrapper {
+            width: 100%;
+            max-width: 900px; /* Max width of the player */
+            margin: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6); /* Deep shadow for pop */
+            border-radius: 12px; /* Rounded corners */
+            overflow: hidden;
+            background: #000;
+        }
+
+        /* Customizing Plyr to look even cleaner */
+        .plyr {
+            --plyr-color-main: #3b82f6; /* Change this hex code to match your brand color */
+            --plyr-video-background: #000000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="player-wrapper">
+        <!-- 
+           The Video Element 
+           1. data-plyr-provider="youtube": Tells Plyr this is YouTube
+           2. data-plyr-embed-id: REPLACE THIS ID with your video ID 
+        -->
+        <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="yLvj0KEDsDc"></div>
+    </div>
+
+    <!-- Plyr JS Library -->
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const player = new Plyr('#player', {
+                // Custom Controls Layout
+                controls: [
+                    'play-large', // The big button in the middle
+                    'play',       // Play/Pause button in bottom bar
+                    'progress',   // The timeline
+                    'current-time', // Time elapsed
+                    'mute',       // Mute button
+                    'volume',     // Volume slider
+                    'fullscreen'  // Fullscreen button
+                ],
+                
+                // Specific YouTube Config to hide branding
+                youtube: {
+                    noCookie: true,   // Enable privacy mode
+                    rel: 0,           // Disable related videos
+                    showinfo: 0,      // Hide info (deprecated by YT but good to have)
+                    iv_load_policy: 3, // Hide annotations
+                    modestbranding: 1, // Hide the YouTube logo in the control bar
+                    controls: 0       // Hide native YouTube controls completely
+                },
+                
+                // UI Preferences
+                hideControls: true, // Hide controls when mouse is not hovering
+                clickToPlay: true,
+                keyboard: { focused: true, global: true },
+            });
+        });
+    </script>
+</body>
+</html>
